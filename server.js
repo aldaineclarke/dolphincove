@@ -6,6 +6,8 @@ const path = require("path");
 const db = require("./config/db.config");
 const app = express();
 const PORT = parseInt(process.env.PORT) || 8080;
+const indexRoutes = require("./routes/index.routes");
+const authRoutes = require("./routes/admin.routes");
 
 // Configurations
 

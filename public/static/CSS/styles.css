@@ -4,16 +4,7 @@ body{
     background-color: rgb(239, 246, 246);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.home{
-    /* background-color: red;
-    height: 80vh; */
-}
-/* .w-box{
-    clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
-    background-color: blue;
-    height: 400px;
-    width: 400px;
-} */
+
 .nav{
     
     margin: 0;
