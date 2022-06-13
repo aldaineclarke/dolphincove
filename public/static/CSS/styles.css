@@ -23,10 +23,7 @@ body{
     width: 1400px;
     margin: auto;
 }
-header{
-    background-image: linear-gradient(to right,#347B7D,#3C97B6, white);
 
-}
 nav{
     position: relative;
     z-index: 3;
@@ -78,37 +75,19 @@ nav{
 }
 .w-btn{
     border-radius: 0 0 20px 0;
+    border: none;
     padding: 8px 15px;
     font-size: 1.1rem;
     font-weight: 600;
     transition: background-color 300ms ease-in-out;
 }
 
+
 .hero-section{
     position: relative;
     top: -20px;
-    /* background-image: url("/static/IMG/dolphincoveja-banner.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center top;
-    width: 100vw;
-    max-width: 100vw;
-    max-height: 100vh;
-    height: 100vh; */
-    
-
 }
-/* .hero-section::after{
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: radial-gradient( transparent, rgba(0,0,0,0.6));
-    z-index: 1;
 
-} */
 .hero-section img{
     width: 100%;
 }
@@ -119,14 +98,58 @@ nav{
 }
 .grid-two{
     display: grid;
-    grid-template-columns: auto minmax(350px, 600px);
+    grid-template-columns: 2fr 1fr;
     gap: 3rem;
+    width: 100%;
 }
+.card-box{
+    display: flex;
+    justify-content: space-between;;
+}
+
 .curved-img img{
     height: auto;
     width: auto;
     object-fit: cover;
     object-position: center;
+}
+
+.curved-img{
+    border-radius: 0 0 30px 30px;
+}
+
+
+.bookingForm{
+    display:flex;
+    flex-direction: column;
+    padding: 2rem;
+    width: 400px;
+    gap: 1rem;
+}
+.bookingForm label{
+    display: flex;
+    flex-direction: column;
+}
+.bookingForm input, .bookingForm select{
+    height: 1.8rem;
+    flex-grow:1;
+}
+
+
+.form-group{
+    display: flex;
+    gap: 2rem;
+    flex-grow:1;
+    justify-content: space-between;
+
+}
+.form-group.activities input{
+    width: 80px;
+}
+
+label.inline-flex{
+    flex-direction:row;
+    gap: 1rem;
 }
 
 /* UTILITIES */
@@ -140,6 +163,9 @@ nav{
 }
 .w-btn-primary:hover{
     background-color: #323232
+}
+.w-btn-sm{
+    font-size: .7rem;
 }
 .fp{
     color: #203772;
