@@ -5,8 +5,9 @@ const tableName = "admins";
 function getUser(email){
     return new Promise((resolve, reject) => {
         db.query("SELECT * FROM ? WHERE email = ?", [tableName, email],(error, user, fields)=>{
-            if(error) reject({reason: "There is an error with the sql"});
-            if(user.length > 1) reject({reason: "Duplicate User. The user already exists with that email"})
+            if(error) reject({code: 0 , message: "There is an error with the sql"});
+            if(user.length > 1) reject({code: 1,message: "Duplicate User. The user already exists with that email"});
+            if(user.length == 0) reject({code:-1, message: "No record by that name."})
             resolve(user[0]);
         })
     });
@@ -15,7 +16,7 @@ function getUser(email){
 function addNewUser(user) {
     return new Promise((resolve, reject) => {
         db.query("INSERT INTO ? SET ?", [tableName, user],(error, user, fields)=>{
-            if(error) reject({reason: "There is an error with the sql"});
+            if(error) reject({code: 0 , message: "There is an error with the sql"});
             
             resolve({message:"User Successfully added", data: user});
         })
