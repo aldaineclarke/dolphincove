@@ -37,6 +37,55 @@ function calculateUpfrontCost(){
 
 
     }catch(error){
+        console.error(error);
+    }
+}
+
+/**
+ * @descrition Create booking after form has been submitted. Then redirect user to the necessary page.
+ * @param {Event} event 
+ */
+function createBooking(event){
+    try{
+    //    const url = event.target.getAttribute("action");
+       let data = new FormData(event.target);
+       console.log(event.target);
+       let formdata = {};
+       let dataArr = [];
+       let guestTotalArr = [];
+       let programArr = [];
+       
+
+       
+       for(let [key, val] of data){
+            if(key == "program"){
+                dataArr.push(val);
+            }else if(key == "activityNum"){
+                guestTotalArr.push(val);
+            }else{
+                formdata[key] = val;
+            }
+       }
+
+       dataArr.forEach((programID, index)=>{
+            programArr.push({ programID: programID,totalGuest: guestTotalArr[index] })
+       });
+
+       formdata.programList = programArr;
+
+       event.target.submit()
+       fetch("/bookings", {
+        method: "POST",
+        headers:{
+            'Content-Type': 'application/json',
+        },
+        body:JSON.stringify(formdata),
+
+       }).then((response)=> response.json())
+         .then((data)=>{
+        window.location.href = data.redirect;
+    });
+    }catch(error){
         console.error(error)
     }
 }

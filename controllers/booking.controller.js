@@ -4,14 +4,14 @@ class BookingsController{
         let programs;
         try{
             programs = await bookingService.getAllPrograms();
-            console.log(programs)
             res.render("booking",{programs});
         }catch(error){
             throw error;
         }
     }
     createBooking(req, res, next){
-        
+        console.log("This is in the creation \n", req.body);
+        res.send({redirect: "/"});
     }
     updateBooking(req, res, next){
 
