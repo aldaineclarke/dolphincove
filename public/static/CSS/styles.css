@@ -158,6 +158,32 @@ nav{
 .curved-img{
     border-radius: 0 0 30px 30px;
 }
+.loginForm{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    /* border:1px solid #878585; */
+    border-radius: 20px;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+
+    gap: 1rem;
+}
+.login-page{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+.login-page .img{
+    margin-bottom: 2rem;
+    text-align: center;
+
+}
+.loginForm label{
+    color:#203772;
+    font-weight: 500;
+}
 
 .form-float-right{
     float:right;
@@ -167,7 +193,7 @@ nav{
     display: flex;
     gap: 1rem;
 }
-.bookingForm legend{
+legend{
     color: #203772;
     font-size: 2rem;
 }
@@ -191,20 +217,21 @@ nav{
     border-radius: 30px;
     box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
 }
-.bookingForm label{
+ label{
     display: flex;
     flex-direction: column;
     color: #203772;
     font-weight: 500;
 }
-.bookingForm input, .bookingForm select{
+ input,select{
     height: 2rem;
     padding-left: 3px;
     flex-grow:1;
     border: 1px solid #878585;
     border-radius: 5px;
+    transition: 300ms box-shadow linear;
 }
-.bookingForm input:focus, .bookingForm select:focus{
+input:focus,select:focus{
     outline: none;
     box-shadow: 0 0 5px 2px #2a71a77d
 }

@@ -5,10 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/static/CSS/styles.css">
+
 </head>
 <body>
-    <section>
-        <form action="/auth/login" method="POST">
+    <section class="login-page">
+       <div>
+        <div class="img">
+            <a href="/"><img src="/static/IMG/dolphincovelogo.png" alt="This is a logo of  dolphin cove"></a>
+        </div>
+        <form action="/auth/login" method="POST" class="loginForm">
+            <legend>Login</legend>
             <label>
                 <span>Email:</span>
                 <input type="email" name="email">
@@ -17,8 +24,10 @@
                 <span>Password:</span>
                 <input type="password" name="password">
             </label>
-            <button class="" type="submit">Login</button>
+            <a href="#">Forgot password ?</a>
+            <button class="w-btn w-btn-primary" type="submit">Login</button>
         </form>
+       </div>
     </section>
 </body>
 </html>
