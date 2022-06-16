@@ -55,8 +55,6 @@ function createBooking(event){
        let guestTotalArr = [];
        let programArr = [];
        
-
-       
        for(let [key, val] of data){
             if(key == "program"){
                 dataArr.push(val);

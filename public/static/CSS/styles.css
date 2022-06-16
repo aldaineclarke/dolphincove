@@ -3,6 +3,8 @@ body{
     margin: 0;
     background-color: rgb(239, 246, 246);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:#878585;
+
 }
 
 .nav{
@@ -21,6 +23,12 @@ nav{
     border-radius: 0 0 30px 30px;
     box-shadow: 0 3px 4px rgba(0,0,0,0.14);
     background-color: white;
+}
+
+.content-aware.section, .section{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+
 }
 /* nav{
     filter:drop-shadow(-1px 2px 3px rgba(50, 50, 0, 0.5));
@@ -73,6 +81,21 @@ nav{
     transition: background-color 300ms ease-in-out;
 }
 
+.fun-activities p{
+    text-align: center;
+    font-size: 1.4rem;
+    padding: 3rem;
+    font-weight: 600;
+    line-height: 2rem;
+}
+.fun-activities ul{
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    color:#878585;
+    gap: 5px;
+    font-weight: 600
+}
 
 .hero-section{
     position: relative;
@@ -91,11 +114,38 @@ nav{
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 3rem;
+    font-size: 1.3rem;
+    font-weight: 200;
     width: 100%;
 }
 .card-box{
     display: flex;
-    justify-content: space-between;;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-grow: 1;
+
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 33%;
+    overflow: hidden;
+    box-shadow: 1px 1px 6px rgba(0,0,0,0.2);
+    border-radius: 0 0 30px 0;
+
+}
+.card-body{
+    padding: 10px;
+    background-color: #A96B41; 
+    color: white;
+    flex-grow: 1;
+
+}
+.card-header{
+    margin-top: 0;
+    text-transform: uppercase;
+    text-align: center;;
+
 }
 
 .curved-img img{
@@ -143,6 +193,70 @@ label.inline-flex{
     gap: 1rem;
 }
 
+footer{
+    background-color: #39a4ac;
+
+}
+.footer-top{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+.footer-top ul{
+    list-style-type: none;
+}
+.footer-top li{
+    border-bottom: 1px solid rgba(245, 245, 245, 0.263);
+    width: 30vw;
+}
+
+.footer-top ul a{
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 5px 0 ;
+    width: 100%;
+    color: inherit;
+}
+.footer-bottom{
+    background-image: url("/static/IMG/footer.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #39a4ac;
+    background-position: top center;
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 10px;
+    color: white;
+}
+
+.locations p{
+    margin: 2px 0;
+}
+.locations p span{
+    font-weight: bold;
+}
+.locations .mt-1{
+    margin-top: 1rem;
+}
+.park-info{
+    margin: 5rem 0;
+
+}
+.park-info .grid-two{
+    grid-template-columns: 1fr 1fr;
+    font-size: 1.3rem;
+    font-weight: 200;
+}
+.park-info h3{
+    margin: 2rem;
+    text-align: center;
+    font-size: 1.8rem;
+    font-style: italic;
+    color:#878585;
+    font-weight: 500;
+
+}
 /* UTILITIES */
 
 .right{
@@ -164,4 +278,20 @@ label.inline-flex{
 h2.fp{
     font-size: 3rem;
     /* text-align: center; */
+}
+.bold{
+    font-weight: bold;
+}
+.h2{
+    font-size: 1.5rem;
+}
+.flex{
+
+}
+*.mt-1{
+    margin-top:1rem;
+}
+
+.gray{
+   background-color:  #EFEEEE;
 }
