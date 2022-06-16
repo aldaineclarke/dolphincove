@@ -159,21 +159,54 @@ nav{
     border-radius: 0 0 30px 30px;
 }
 
+.form-float-right{
+    float:right;
+}
+.booking-page{
+    margin: 3rem 0;
+    display: flex;
+    gap: 1rem;
+}
+.bookingForm legend{
+    color: #203772;
+    font-size: 2rem;
+}
+.booking-page h2{
+    font-size: 2.4rem;
+    color: #203772;
 
+}
+.booking-page p{
+    font-size: 1.3rem;
+    font-weight: 200;
+}
 .bookingForm{
     display:flex;
+    margin: 2rem 0;
     flex-direction: column;
     padding: 2rem;
     width: 400px;
     gap: 1rem;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
 }
 .bookingForm label{
     display: flex;
     flex-direction: column;
+    color: #203772;
+    font-weight: 500;
 }
 .bookingForm input, .bookingForm select{
-    height: 1.8rem;
+    height: 2rem;
+    padding-left: 3px;
     flex-grow:1;
+    border: 1px solid #878585;
+    border-radius: 5px;
+}
+.bookingForm input:focus, .bookingForm select:focus{
+    outline: none;
+    box-shadow: 0 0 5px 2px #2a71a77d
 }
 
 
@@ -184,9 +217,9 @@ nav{
     justify-content: space-between;
 
 }
-.form-group.activities input{
+/* .form-group.activities input{
     width: 80px;
-}
+} */
 
 label.inline-flex{
     flex-direction:row;

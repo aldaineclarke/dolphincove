@@ -1,0 +1,70 @@
+<%- include("~header.ejs")%>
+
+<section>
+    <div class="content-aware">
+        <div class="booking-page">
+            <div class="info">
+                <h2>Book a reservation at our resort</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur numquam natus tempora voluptatem illum, nobis sunt qui veniam eligendi modi ea eos ullam cupiditate reprehenderit? Dolore neque deserunt rem iste expedita officia facilis! Deserunt voluptatibus fugiat illo, voluptate neque enim facere, qui modi nobis saepe non officiis natus amet odit, mollitia delectus tenetur ad placeat quasi iure soluta sit repellat tempora perferendis! Repellat error assumenda quibusdam nisi dolore reiciendis harum distinctio temporibus! Accusantium dolores unde vel quos tenetur, aliquid, repellat veritatis magni minima, sapiente quia hic porro. Architecto dolor error eum, natus harum, atque ea doloremque a velit quaerat rerum!</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur numquam natus tempora voluptatem illum, nobis sunt qui veniam eligendi modi ea eos ullam cupiditate reprehenderit? Dolore neque deserunt rem iste expedita officia facilis! Deserunt voluptatibus fugiat illo, voluptate neque enim facere, qui modi nobis saepe non officiis natus amet odit, mollitia delectus tenetur ad placeat quasi iure soluta sit repellat tempora perferendis! Repellat error assumenda quibusdam nisi dolore reiciendis harum distinctio temporibus! Accusantium dolores unde vel quos tenetur, aliquid, repellat veritatis magni minima, sapiente quia hic porro. Architecto dolor error eum, natus harum, atque ea doloremque a velit quaerat rerum!</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur numquam natus tempora voluptatem illum, nobis sunt qui veniam eligendi modi ea eos ullam cupiditate reprehenderit? Dolore neque deserunt rem iste expedita officia facilis! Deserunt voluptatibus fugiat illo, voluptate neque enim facere, qui modi nobis saepe non officiis natus amet odit, mollitia delectus tenetur ad placeat quasi iure soluta sit repellat tempora perferendis! Repellat error assumenda quibusdam nisi dolore reiciendis harum distinctio temporibus! Accusantium dolores unde vel quos tenetur, aliquid, repellat veritatis magni minima, sapiente quia hic porro. Architecto dolor error eum, natus harum, atque ea doloremque a velit quaerat rerum!</p>
+            </div>
+            <div class="form-float-right">
+             <form class="bookingForm" onchange="calculateUpfrontCost()"onsubmit="createBooking(event)">
+                <legend>Make a Reservation</legend>
+                 <label>
+                     <span>First name: </span>
+                     <input type="text" name="fname">
+                 </label>
+                 <label>
+                     <span>Last name: </span>
+                     <input type="text" name="lname">
+                 </label>
+                 <div class="form-group activities">
+                     <label>
+                         <span>Program: </span>
+                         <select name="program">
+                             <% programs.forEach((program)=>{ %>
+                                 <option data-cost="<%= program.program_cost %>" value="<%= program.program_id %>"><%= program.program %></option>
+                             <% })%>
+                         </select>
+                     </label>
+                     <label>
+                         <span> # of Persons: </span>
+                         <input type="number" class="activityNum" name="activityNum" min="0" max="20" value="0" >
+                     </label>
+                 </div>
+                 <div class="cta" onclick="addProgram(event)">
+                     <button class="w-btn w-btn-primary w-btn-sm"> 
+                         <i class="fa-solid fa-plus"></i>
+                         <span>
+                              Program
+                         </span>
+                          
+                     </button>
+                         
+                 </div>
+                 <label>
+                     <span>Hotel: </span>
+                     <input type="text" name="origin">
+                 </label>
+                 <label>
+                     <span>Payment Type: </span>
+                     <input type="text" name="paymentType">
+                 </label>
+                 <label>
+                     <span>Payment: </span>
+                     <input type="text" name="origin">
+                 </label>
+                 <label class="inline-flex">
+                     <span>Total Due: </span>
+                     <span id="total_amount"></span>
+                 </label>
+                 <button class="w-btn w-btn-primary">Make Booking</button>
+                 
+             </form>
+            </div> 
+        </div>
+    </div>
+</section>
+<%- include("~footer.ejs")%>
