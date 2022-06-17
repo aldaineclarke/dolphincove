@@ -1,0 +1,27 @@
+<%-include("~admin-header.ejs")%>
+
+    <div class="main-content">
+        <h1>Edit <%= company.companyName%></h1>
+
+        <form class="tourCompany" action="/auth/tourCompany/edit/<%= company.id%>" method="POST">
+            <legend>Tour Company Form</legend>
+             <label>
+                 <span>Company Name: </span>
+                 <input type="text" name="companyName" value="<%= company.companyName%>">
+             </label>
+             <label>
+                 <span>Contact Number: </span>
+                 <input type="text" name="contactInfo" value="<%= company.contactInfo%>">
+             </label>
+             <label>
+                 <span>Default Password: </span>
+                 <input type="text" name="defaultPassword" value="<%= company.defaultPassword%>">
+             </label>
+             
+             <button class="w-btn w-btn-primary">Update Company</button>
+             <a href="/auth/tourCompany/delete/<%= company.id%>" class="w-btn w-btn-danger">Delete Company</a>
+
+         </form>
+    </div>
+      
+<%-include("~admin-footer.ejs")%>

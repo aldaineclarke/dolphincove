@@ -8,7 +8,6 @@ div.wrapper{
     width: 100vw;
     height: 100vh;
     display:flex;
-    gap: 1rem;
 }
 div.sidebar{
     width: 300px;
@@ -42,7 +41,8 @@ div.sidebar li{
     text-decoration: none;
 }
 div.main-content{
-    width: calc(100% - 300px)
+    width: calc(100% - 300px);
+    padding: 0 1rem;
 }
 
 .w-btn{
@@ -52,15 +52,64 @@ div.main-content{
     font-size: 1.1rem;
     font-weight: 600;
     transition: background-color 300ms ease-in-out;
+    text-decoration: none;
+    text-align: center;
 }
 
+label{
+    display: flex;
+    flex-direction: column;
+    color: #203772;
+    font-weight: 500;
+}
+ input,select{
+    height: 2rem;
+    padding-left: 3px;
+    flex-grow:1;
+    border: 1px solid #878585;
+    border-radius: 5px;
+    transition: 300ms box-shadow linear;
+}
+input:focus,select:focus{
+    outline: none;
+    box-shadow: 0 0 5px 2px #2a71a77d
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.form-group{
+    display: flex;
+    gap: 2rem;
+    flex-grow:1;
+    justify-content: space-between;
+
+}
+legend{
+    color: #203772;
+    font-size: 2rem;
+}
+/* .form-group.activities input{
+    width: 80px;
+} */
+
+label.inline-flex{
+    flex-direction:row;
+    gap: 1rem;
+}
 /* UTILITIES */
 
 .w-btn-primary{
     background-color: #203772;
     color: white;
 }
-.w-btn-primary:hover{
+.w-btn-danger{
+    background-color: rgb(128, 0, 0);
+    color: white;
+}
+.w-btn-primary:hover, .w-btn-danger:hover{
     background-color: #323232
 }
 .w-btn-sm{

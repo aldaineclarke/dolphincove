@@ -10,7 +10,9 @@
             <p>You as the Staff for our Company has the option to add a company to our partner list as well as remove a company if they do not follow our terms and agreement. Remember, with great power comes great responsibility. </p>
         </div>
         <ul>
-            <li></li>
+            <% companies.forEach((company)=>{ %>
+                <li><a href="/auth/tourCompany/edit/<%= company.id%>"><%= company.companyName%></a></li>
+            <%})%>
 
         </ul>
     </div>
