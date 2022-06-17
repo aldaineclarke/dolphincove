@@ -1,0 +1,25 @@
+<%-include("~admin-header.ejs")%>
+
+    <div class="main-content">
+        <h1>Add a new Tour Company</h1>
+
+        <form class="tourCompany" action="/auth/tourCompany/add" method="POST">
+            <legend>Tour Company Form</legend>
+             <label>
+                 <span>Company Name: </span>
+                 <input type="text" name="companyName">
+             </label>
+             <label>
+                 <span>Contact Number: </span>
+                 <input type="text" name="contactInfo">
+             </label>
+             <label>
+                 <span>Default Password: </span>
+                 <input type="text" name="defaultPassword">
+             </label>
+             
+             <button class="w-btn w-btn-primary">Add a Company</button>
+         </form>
+    </div>
+      
+<%-include("~admin-footer.ejs")%>

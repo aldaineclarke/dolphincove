@@ -1,0 +1,68 @@
+body{
+    margin: 0;
+    box-sizing: content-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+div.wrapper{
+    width: 100vw;
+    height: 100vh;
+    display:flex;
+    gap: 1rem;
+}
+div.sidebar{
+    width: 300px;
+    height: 100%;
+    background-image: linear-gradient(to top left,#203772,#0E9BD7) 
+}
+.sidebar ul{
+    margin: 0;
+    height: 100%;
+    list-style-type: none;
+    padding: 0;
+    display:flex;
+    flex-direction: column;
+}
+.sidebar li.active, .sidebar li:not(.logo):hover{
+    background-color: white;
+    
+}
+div.sidebar li{
+    padding-left: 10px;
+    transition: 300ms ease-in-out background-color;
+}
+.sidebar a {
+    display: inline-block;
+    width: 100%;
+    font-size: 1.2rem;
+    margin: 8px 0;
+    /* color: white; */
+    color: #203772;
+    font-weight: 500;
+    text-decoration: none;
+}
+div.main-content{
+    width: calc(100% - 300px)
+}
+
+.w-btn{
+    border-radius: 0 0 20px 0;
+    border: none;
+    padding: 8px 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 300ms ease-in-out;
+}
+
+/* UTILITIES */
+
+.w-btn-primary{
+    background-color: #203772;
+    color: white;
+}
+.w-btn-primary:hover{
+    background-color: #323232
+}
+.w-btn-sm{
+    font-size: .7rem;
+}
