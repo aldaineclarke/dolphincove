@@ -1,0 +1,26 @@
+<%-include("~admin-header.ejs")%>
+
+    <div class="main-content">
+        <h1>Edit <%= program.program %> Program</h1>
+
+        <form action="/auth/programs/edit/<%= program.program_id%>" method="POST">
+            <legend>Program Form</legend>
+             <label>
+                 <span>Program Name: </span>
+                 <input type="text" name="program" value="<%= program.program%>">
+             </label>
+             <label>
+                 <span>Program Description: </span>
+                 <textarea type="text" name="description" ><%= program.description %></textarea>
+             </label>
+             <label>
+                 <span>Program Cost: </span>
+                 <input type="text" name="program_cost" value="<%= program.program_cost%>">
+            </label>
+             
+             <button class="w-btn w-btn-primary">Update Program</button>
+             <a href="/auth/programs/delete/<%= program.program_id%>" class="w-btn w-btn-danger">Delete Program</a>
+         </form>
+    </div>
+      
+<%-include("~admin-footer.ejs")%>

@@ -1,0 +1,25 @@
+<%-include("~admin-header.ejs")%>
+
+    <div class="main-content">
+        <h1>Add a new Program</h1>
+
+        <form class="tourCompany" action="/auth/programs/add" method="POST">
+            <legend>Program Form</legend>
+             <label>
+                 <span>Program Name: </span>
+                 <input type="text" name="program">
+             </label>
+             <label>
+                 <span>Program Description: </span>
+                 <textarea name="description"></textarea>
+             </label>
+             <label>
+                 <span>Program Cost: </span>
+                 <input type="text" name="program_cost">
+             </label>
+             
+             <button class="w-btn w-btn-primary">Add a Program </button>
+         </form>
+    </div>
+      
+<%-include("~admin-footer.ejs")%>
