@@ -9,8 +9,18 @@ async function getAllPrograms(){
     });
     return data;
 }
+async function createBooking(newData){
+    const data = await new Promise((resolve, reject) =>{
+        db.query("INSERT INTO bookings SET ?", newData, (error, result)=>{
+            if(error) reject({code: 0, message: "There is an error with the sql"});
+            resolve(result);
+        })
+    })
+    return data;
+}
 
 
 module.exports = {
     getAllPrograms,
+    createBooking
 }
