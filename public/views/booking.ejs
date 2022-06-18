@@ -20,19 +20,25 @@
                      <span>Last name: </span>
                      <input type="text" name="lname">
                  </label>
-                 <div class="form-group activities">
+                 <div class="activities">
+                    <div class="form-group">
+                        <label>
+                            <span>Program: </span>
+                            <select name="program">
+                                <% programs.forEach((program)=>{ %>
+                                    <option data-cost="<%= program.program_cost %>" value="<%= program.program_id %>"><%= program.program %></option>
+                                <% })%>
+                            </select>
+                        </label>
+                        <label>
+                            <span> # of Persons: </span>
+                            <input type="number" class="activityNum" name="activityNum" min="0" max="20" value="0" >
+                        </label>
+                    </div>
                      <label>
-                         <span>Program: </span>
-                         <select name="program">
-                             <% programs.forEach((program)=>{ %>
-                                 <option data-cost="<%= program.program_cost %>" value="<%= program.program_id %>"><%= program.program %></option>
-                             <% })%>
-                         </select>
-                     </label>
-                     <label>
-                         <span> # of Persons: </span>
-                         <input type="number" class="activityNum" name="activityNum" min="0" max="20" value="0" >
-                     </label>
+                        <span>Excursion Date: </span>
+                        <input type="date" class="excurs" name="excursionDate" min="2022-06-19">
+                    </label>
                  </div>
                  <div class="cta" onclick="addProgram(event)">
                      <button class="w-btn w-btn-primary w-btn-sm"> 
@@ -50,12 +56,12 @@
                  </label>
                  <label>
                      <span>Payment Type: </span>
-                     <input type="text" name="paymentType">
+                     <select name="paymentType">
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="Cash">Cash</option>
+                     </select>
                  </label>
-                 <label>
-                     <span>Payment: </span>
-                     <input type="text" name="origin">
-                 </label>
+
                  <label class="inline-flex">
                      <span>Total Due: </span>
                      <span id="total_amount"></span>

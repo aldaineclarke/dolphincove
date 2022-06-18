@@ -54,19 +54,22 @@ function createBooking(event){
        let dataArr = [];
        let guestTotalArr = [];
        let programArr = [];
+       let excursionDateArr = [];
        
        for(let [key, val] of data){
             if(key == "program"){
                 dataArr.push(val);
             }else if(key == "activityNum"){
                 guestTotalArr.push(val);
+            }else if(key == "excursionDate"){
+                excursionDateArr.push(val);
             }else{
                 formdata[key] = val;
             }
        }
 
        dataArr.forEach((programID, index)=>{
-            programArr.push({ programID: programID,totalGuest: guestTotalArr[index] })
+            programArr.push({ programID: programID,totalGuest: guestTotalArr[index] , excursionDate: excursionDateArr[index]})
        });
 
        formdata.programList = programArr;

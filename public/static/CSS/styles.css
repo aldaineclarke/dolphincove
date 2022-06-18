@@ -244,6 +244,11 @@ input:focus,select:focus{
     justify-content: space-between;
 
 }
+.activities{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 /* .form-group.activities input{
     width: 80px;
 } */
