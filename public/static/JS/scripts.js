@@ -90,3 +90,53 @@ function createBooking(event){
         console.error(error)
     }
 }
+
+/**
+ * @descrition Update booking after form has been submitted. Then redirect user to the necessary page.
+ * @param {Event} event 
+ */
+ function updateBooking(event){
+    try{
+    //    const url = event.target.getAttribute("action");
+       let data = new FormData(event.target);
+       console.log(event.target);
+       let formdata = {};
+       let dataArr = [];
+       let guestTotalArr = [];
+       let programArr = [];
+       let excursionDateArr = [];
+       
+       for(let [key, val] of data){
+            if(key == "program"){
+                dataArr.push(val);
+            }else if(key == "activityNum"){
+                guestTotalArr.push(val);
+            }else if(key == "excursionDate"){
+                excursionDateArr.push(val);
+            }else{
+                formdata[key] = val;
+            }
+       }
+
+       dataArr.forEach((programID, index)=>{
+            programArr.push({ programID: programID,totalGuest: guestTotalArr[index] , excursionDate: excursionDateArr[index]})
+       });
+
+       formdata.programList = programArr;
+       console.log(window.location.href);
+       event.target.submit()
+       fetch(window.location.href, {
+        method: "POST",
+        headers:{
+            'Content-Type': 'application/json',
+        },
+        body:JSON.stringify(formdata),
+
+       }).then((response)=> response.json())
+         .then((data)=>{
+        window.location.href = data.redirect;
+    });
+    }catch(error){
+        console.error(error)
+    }
+}

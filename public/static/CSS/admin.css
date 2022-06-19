@@ -42,6 +42,7 @@ div.sidebar li{
 }
 div.main-content{
     width: calc(100% - 300px);
+    overflow-y: scroll;
     padding: 0 1rem;
 }
 
