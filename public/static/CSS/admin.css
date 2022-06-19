@@ -90,6 +90,11 @@ form{
     justify-content: space-between;
 
 }
+.activities{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 legend{
     color: #203772;
     font-size: 2rem;
