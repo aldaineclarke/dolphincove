@@ -1,0 +1,43 @@
+
+
+ <%-include("~admin-header.ejs")%>
+
+    <div class="main-content">
+        <h1>All Bookings</h1>
+        <a href="/auth/bookings/add" class="w-btn w-btn-primary w-btn-sm">
+            <i class="fa-solid fa-plus"></i>
+            Make Booking</a>
+        <div>
+            <p>This page shows a list of the bookings made. </p>
+            <p>You as the Staff for our Company has the option to make a reservation for customers as well as edit a reservation if they do not follow our terms and agreement. Remember, with great power comes great responsibility. </p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>VoucherNumber</th>
+                    <th>Guest Name</th>
+                    <th>Total Guests</th>
+                    <th>Tour Company</th>
+                    <th>Hotel</th>
+                    <th>booking_date</th>
+                    <th>Payment Type</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+            <% bookings.forEach((booking)=>{%>
+                <tr >
+                    <td><%= booking.booking_id%></td>
+                    <td><%= booking.guestName%></td>
+                    <td><%= booking.totalGuests%></td>
+                    <td><%= booking.companyName%></td>
+                    <td><%= booking.origin%></td>
+                    <td><%= new Date(booking.booking_date).toLocaleString().slice(0,10)%></td>
+                    <td><%= booking.payment_type%></td>
+                    <td><%= booking.totalCost%></td>
+                </tr>
+            <% })%>
+            </tbody>
+        </table>
+    </div>
+<%-include("~admin-footer.ejs")%>
