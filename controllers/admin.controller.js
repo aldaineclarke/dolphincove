@@ -8,15 +8,16 @@ class UserController{
     async loginUser(req, res, next){
         let email = req.body.email
         let password = req.body.password;
+        console.log(email)
         try{
-            user = await userService.getUser(email);
+            let user = await userService.getUser(email);
             if(user.password == password){
                 req.session.user = user;
                 req.session.regenerate((error)=>{
                     if(error) throw error; 
                 });
                
-                res.redirect("/")
+                return res.redirect("/auth/bookings");
             }else{
                 req.flash("error", "Invalid credentials for user");
                 res.redirect("/auth/login");
@@ -27,12 +28,74 @@ class UserController{
                 res.redirect("/auth/login");
             }
         }
-
-
-
-        return res.redirect("/");
+    }
+    async getAllUsers(req, res, next){
+        try{
+            
+            let users = await userService.getUsersByCompany(req.session.user.company_id);
+    
+            res.render("allUsers", {users})
+        }catch(error){
+            console.log(error)
+        }
 
     }
+    getAddUserPage(req, res, next){
+        res.render("addUser");
+    }
+    async addUser(req, res,next){
+        let userInfo = {
+            email:req.body.email,
+            password: req.body.password,
+            company_id: req.session.user.company_id
+        }
+        try{
+            await userService.addNewUser(userInfo);
+            res.redirect("/auth/users");
+        }catch(error){
+            console.log(error);
+            res.redirect("/auth/users/add");
+        }
+    }
+    async getEditUserPage(req, res, next){
+        let id = parseInt(req.params.id);
+        console.log(id)
+        try{
+            let user = await userService.getUserById(id);
+            res.render("editUser",{user});
+        }catch(error){
+            console.log(error);
+            res.redirect("/auth/users");
+        }
+    }
+    async updateUser(req, res, next){
+        let id = parseInt(req.params.id);
+
+        let data = {
+            password: req.body.password,
+            email: req.body.email,
+        }
+        try{
+            await userService.updateUserInfo(data, id);
+            res.redirect("/auth/users");
+        }catch(error){
+            console.log(error);
+            res.redirect("/auth/users/edit"+ id);
+        }
+    }
+    async deleteUser(req, res, next){
+        let id = parseInt(req.params.id);
+        try{
+            await userService.deleteUser(id);
+            res.redirect("/auth/users");
+        }catch(error){
+            res.redirect("/auth/users/edit/"+id)
+        }
+    }
+
+
+
+
     getDashboardPage(req, res, next){
         return res.render("dashboard");
     }

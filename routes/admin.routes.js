@@ -2,12 +2,24 @@ const router = require("express").Router();
 const userController = require("../controllers/admin.controller");
 const programController = require("../controllers/program.controller");
 const bookingController = require("../controllers/booking.controller");
+const { authenticated } = require("../middleware/auth.guard");
 
 router.get("/login",userController.getLoginPage);
+router.post("/login",userController.loginUser);
 router.get("/dashboard",userController.getDashboardPage);
 
+// User Routes
+router.get("/users/",authenticated ,userController.getAllUsers);
+router.get("/users/add",authenticated ,userController.getAddUserPage);
+router.post("/users/add",authenticated ,userController.addUser);
+router.get("/users/edit/:id",authenticated ,userController.getEditUserPage);
+router.post("/users/edit/:id",authenticated ,userController.updateUser);
+router.get("/users/delete/:id",authenticated ,userController.deleteUser);
+
+
+
 // Tour Company Routes
-router.get("/tourCompany",userController.getTourCompanyPage);
+router.get("/tourCompany",authenticated ,userController.getTourCompanyPage);
 router.get("/tourCompany/add",userController.getAddCompanyPage);
 router.post("/tourCompany/add",userController.AddCompany);
 router.get("/tourCompany/delete/:id",userController.deleteCompany);
