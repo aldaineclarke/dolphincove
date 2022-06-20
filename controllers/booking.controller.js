@@ -5,6 +5,8 @@ const {parseDateToInputField} = require("../utilities/dateUtils");
 class BookingsController{
     async getBookingPage(req, res, next){
         try{
+
+
             let programs = await programService.getAllPrograms();
             // if(req.session.user){
             //     res.render("admin_addBooking", {program})
@@ -27,8 +29,7 @@ class BookingsController{
                 guestName: req.body.fname +" "+  req.body.lname,
                 origin: req.body.origin,
                 payment_id: result.insertId,
-                // company_id: (req.session.user) ? req.session.user.company_id : 1000,
-                company_id: 1000,
+                company_id: (req.session.user) ? req.session.user.company_id : 1000,
 
             }
             let bookingInfo = await bookingService.createBooking(data);
@@ -61,6 +62,9 @@ class BookingsController{
         let guestProgramsArr = guestPrograms.split(",");
         let id = parseInt(req.params.id);
         let paymentInfo =  {payment_type: req.body.paymentType}
+        // if( booking.company_id != req.session.user.company_id){
+        //     res.redirect("/auth/bookings");
+        // }
         db.query("UPDATE payments SET ? WHERE payment_id = ? ",[paymentInfo, req.body.payment_id], async (error, result)=>{ 
             if(error){ console.log(error.sqlMessage)};
             console.log(result)
@@ -116,12 +120,13 @@ class BookingsController{
     }
     async getAdminBookingPage(req, res, next){
         try{
+            let id = parseInt(req.session.user.company_id);
             // if(req.session.user.company_id == 1000){
             //     let bookings = await bookingService.getAllBookings();
             // }else{
             //     let bookings = await bookingService.getBookingsMadeByCompany(req.session.user.company_id);
             // }
-            let bookings = await bookingService.customGetBookingQuery();
+            let bookings = await bookingService.customGetBookingQuery(id);
             res.render("admin_allBooking",{bookings})
 
         }catch(error){
@@ -133,6 +138,9 @@ class BookingsController{
         let id = parseInt(req.params.id);
         let programs = await programService.getAllPrograms()
         let booking = await bookingService.customGetSingleBookingQuery(id);
+        if( booking.company_id != req.session.user.company_id){
+            res.redirect("/auth/bookings");
+        }
         let altBooking = await bookingService.getBookingById(id);
         console.log(booking)
         db.query(`SELECT * FROM guestPrograms WHERE booking_id = ${id}`, (error, results) => {

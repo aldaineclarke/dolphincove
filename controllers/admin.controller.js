@@ -148,11 +148,18 @@ class UserController{
 
     async AddCompany(req, res, next){
         let data = {
-           companyName: req.body.companyName,contactInfo: req.body.contactInfo, defaultPassword: req.body.defaultPassword
+           companyName: req.body.companyName,contactInfo: req.body.contactInfo, defaultPassword: req.body.defaultPassword,
+           email: req.body.email
         };
         try{
-            await companyService.createCompany(data);
-            res.redirect("/auth/tourCompany")
+            let company = await companyService.createCompany(data);
+            userdata = {
+                email: req.body.email,
+                password: req.body.defaultPassword,
+                company_id: company.insertId,
+            }
+            await userService.addNewUser()
+            res.redirect("/auth/tourCompany");
         }catch(e){
             console.log(e)
             req.flash("error", e);
