@@ -1,0 +1,20 @@
+<%-include("~admin-header.ejs")%>
+
+    <div class="main-content">
+        <h1>Tour Companies</h1>
+        <a href="/auth/users/add" class="w-btn w-btn-primary w-btn-sm">
+            <i class="fa-solid fa-plus"></i>
+            Add user</a>
+        <div>
+            <p>This page shows a list of the Staff at Our Company. </p>
+            <p>You as the Staff for our Company has the option to add a new staff user to our Staff list list as well as remove a user if they do not follow our terms and agreement. Remember, with great power comes great responsibility. </p>
+        </div>
+        <ul>
+            <% users.forEach((user)=>{ %>
+                <li><a href="/auth/users/edit/<%= user.id%>"><%= user.email%></a></li>
+            <%})%>
+
+        </ul>
+    </div>
+      
+<%-include("~admin-footer.ejs")%>

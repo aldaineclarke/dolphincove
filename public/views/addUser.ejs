@@ -1,0 +1,25 @@
+<%-include("~admin-header.ejs")%>
+
+    <div class="main-content">
+        <h1>Add a new Staff</h1>
+
+        <form class="tourCompany" action="/auth/users/add" method="POST">
+            <legend>User Form</legend>
+             <label>
+                 <span>Email: </span>
+                 <input type="email" name="email">
+             </label>
+             <label>
+                 <span>Password: </span>
+                 <input type="password" name="password">
+             </label>
+             <label>
+                 <span>Confirm Password: </span>
+                 <input type="password">
+             </label>
+             
+             <button class="w-btn w-btn-primary">Add a User </button>
+         </form>
+    </div>
+      
+<%-include("~admin-footer.ejs")%>

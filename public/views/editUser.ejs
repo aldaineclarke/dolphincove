@@ -1,0 +1,26 @@
+<%-include("~admin-header.ejs")%>
+
+    <div class="main-content">
+        <h1>Update Staff</h1>
+
+        <form action="/auth/users/edit/<%= user.id%>" method="POST">
+            <legend>User Form</legend>
+             <label>
+                 <span>Email: </span>
+                 <input type="email" name="email" value="<%= user.email%>">
+             </label>
+             <label>
+                 <span>Password: </span>
+                 <input type="password" name="password" value="<%= user.password%>">
+             </label>
+             <label>
+                 <span>Confirm Password: </span>
+                 <input type="password">
+             </label>
+             
+             <button class="w-btn w-btn-primary">Add a User </button>
+             <a href="/auth/users/delete/<%=user.id%>" class="w-btn w-btn-danger">Delete User </a>
+         </form>
+    </div>
+      
+<%-include("~admin-footer.ejs")%>
