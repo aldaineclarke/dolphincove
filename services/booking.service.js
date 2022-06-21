@@ -62,8 +62,12 @@ async function getBookingById(id){
 }
 async function customGetBookingQuery(id){
 
-    if(id == undefined){
-        id = 1000;
+
+    let whereClause;
+    if(id){
+        whereClause = "WHERE company_id = "+ id;
+    }else if(id == undefined){
+            whereClause = "";
     }
     const data = await new Promise((resolve, reject) =>{
         db.query(`SELECT b.booking_id, b.guestName, b.booking_date, b.origin, p.payment_type, c.companyName,pr.program, gp.num_of_guests,
@@ -74,8 +78,8 @@ async function customGetBookingQuery(id){
         INNER JOIN guestprograms gp ON gp.booking_id = b.booking_id
         INNER JOIN programs pr ON pr.program_id = gp.program_id
         INNER JOIN companies c ON c.id = b.company_id  
-        WHERE company_id = ?
-        group by b.booking_id;`, id,(error, results)=>{
+        ${whereClause}
+        group by b.booking_id;`,(error, results)=>{
             if(error) reject({code: 0 , message: error.sqlMessage});
             resolve(results);
         })
