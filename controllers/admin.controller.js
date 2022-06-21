@@ -9,10 +9,15 @@ class UserController{
         let email = req.body.email
         let password = req.body.password;
         console.log(email)
+        console.log(password)
         try{
             let user = await userService.getUser(email);
             if(user.password == password){
                 req.session.user = user;
+
+                if(user.company_id == 1000){
+                    req.session.isSuperAdmin = true;
+                }
                 req.session.regenerate((error)=>{
                     if(error) throw error; 
                 });
@@ -34,7 +39,7 @@ class UserController{
             
             let users = await userService.getUsersByCompany(req.session.user.company_id);
     
-            res.render("allUsers", {users})
+            res.render("allUsers", {users, session:req.session})
         }catch(error){
             console.log(error)
         }
@@ -62,7 +67,7 @@ class UserController{
         console.log(id)
         try{
             let user = await userService.getUserById(id);
-            res.render("editUser",{user});
+            res.render("editUser",{user, session:req.session});
         }catch(error){
             console.log(error);
             res.redirect("/auth/users");
@@ -93,6 +98,11 @@ class UserController{
         }
     }
 
+    logoutUser(req,res,next){
+        req.session.destroy();
+        res.redirect("/auth/login");
+    }
+
 
 
 
@@ -102,7 +112,7 @@ class UserController{
     async getTourCompanyPage(req, res, next){
         try {
             let companies = await companyService.getAllCompanies();
-            return res.render("tourCompanyPage", {companies});
+            return res.render("tourCompanyPage", {companies , session:req.session});
         }catch(error){
             console.log(error)
         }
@@ -115,7 +125,7 @@ class UserController{
         let id = parseInt(req.params.id);
         try{
             let company = await companyService.getCompany(id);
-            res.render("editTourCompany", {company})
+            res.render("editTourCompany", {company , session:req.session})
         }catch(error){
             console.log(error);
             res.redirect("/auth/tourCompany");
@@ -153,12 +163,12 @@ class UserController{
         };
         try{
             let company = await companyService.createCompany(data);
-            userdata = {
+            let userdata = {
                 email: req.body.email,
                 password: req.body.defaultPassword,
                 company_id: company.insertId,
             }
-            await userService.addNewUser()
+            await userService.addNewUser(userdata)
             res.redirect("/auth/tourCompany");
         }catch(e){
             console.log(e)
