@@ -15,10 +15,28 @@
             <div class="sidebar">
                 <ul>
                     <li class="logo"><a href="/"><img src="/static/IMG/dolphincovelogo.png" alt="Logo for dolphin cove"></a></li>
-                    <li class="active"><a href="/auth/dashboard">Dashboard</a></li>
-                    <li><a href="/auth/bookings/">Booking</a></li>
-                    <li><a href="/auth/tourCompany">Tour Companies</a></li>
-                    <li><a href="/auth/programs">Programs</a></li>
-                    <li><a href="/auth/users">Users</a></li>
+                    
+                    <li><a href="/auth/bookings/">
+                        <i class="fa-solid fa-book-open"></i>
+                        Booking
+                    </a></li>
+                    <% if(session.isSuperAdmin) {%>
+                    <li><a href="/auth/tourCompany">
+                        <i class="fa-solid fa-bus-simple"></i>
+                        Tour Companies
+                    </a></li>
+                    <% } %>
+                    <li><a href="/auth/programs">
+                        <i class="fa-solid fa-list-check"></i>
+                        Programs
+                    </a></li>
+                    <li><a href="/auth/users">
+                        <i class="fa-solid fa-users"></i>
+                        Users
+                    </a></li>
+                    <li><a href="/auth/logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        Logout
+                    </a></li>
                 </ul>
             </div>  
