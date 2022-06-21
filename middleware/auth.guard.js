@@ -10,6 +10,7 @@ function isSuperAdmin(req, res, next){
     }
     next();
 }
+
 module.exports={
     authenticated,
     isSuperAdmin
