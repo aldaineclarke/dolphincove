@@ -13,7 +13,7 @@ class BookingsController{
             // }else{
             //     res.render("booking",{programs});
             // }
-            res.render("admin_addBooking",{programs});
+            res.render("admin_addBooking",{programs, session:req.session});
         }catch(error){
             throw error;
         }
@@ -49,10 +49,9 @@ class BookingsController{
             })
             
         });
-        // if(req.session.user){
-        //     return res.send({redirect: "/auth/bookings"});
-        // }else res.send({redirect: "/"});
-        res.send({redirect: "/"});
+        if(req.session.user){
+            return res.send({redirect: "/auth/bookings"});
+        }else res.send({redirect: "/"});
     }
 
 
@@ -62,9 +61,9 @@ class BookingsController{
         let guestProgramsArr = guestPrograms.split(",");
         let id = parseInt(req.params.id);
         let paymentInfo =  {payment_type: req.body.paymentType}
-        // if( booking.company_id != req.session.user.company_id){
-        //     res.redirect("/auth/bookings");
-        // }
+        if( booking.company_id != req.session.user.company_id){
+            res.redirect("/auth/bookings");
+        }
         db.query("UPDATE payments SET ? WHERE payment_id = ? ",[paymentInfo, req.body.payment_id], async (error, result)=>{ 
             if(error){ console.log(error.sqlMessage)};
             console.log(result)
@@ -75,7 +74,7 @@ class BookingsController{
                 company_id: 1000,
 
             }
-            let bookingInfo = await bookingService.updateBooking(data, id).catch((error)=> console.log(error));
+            await bookingService.updateBooking(data, id).catch((error)=> console.log(error));
             let programList = req.body.programList.map((programData)=>{ 
                     let guestData = {
                         booking_id: id,
@@ -121,13 +120,16 @@ class BookingsController{
     async getAdminBookingPage(req, res, next){
         try{
             let id = parseInt(req.session.user.company_id);
-            // if(req.session.user.company_id == 1000){
-            //     let bookings = await bookingService.getAllBookings();
-            // }else{
-            //     let bookings = await bookingService.getBookingsMadeByCompany(req.session.user.company_id);
-            // }
-            let bookings = await bookingService.customGetBookingQuery(id);
-            res.render("admin_allBooking",{bookings})
+            let bookings;
+            console.log(req.session.isSuperAdmin);
+            if(req.session.user.company_id == 1000){
+            
+                bookings = await bookingService.customGetBookingQuery();
+            }else{
+                bookings = await bookingService.customGetBookingQuery(id);
+            }
+            
+            res.render("admin_allBooking",{bookings, session:req.session})
 
         }catch(error){
             console.log(error);

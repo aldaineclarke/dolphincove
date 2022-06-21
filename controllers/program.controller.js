@@ -4,13 +4,13 @@ class ProgramController{
     async getAllPrograms(req, res, next){
         try{
             let programs = await programService.getAllPrograms();
-            res.render("allPrograms",{programs});
+            res.render("allPrograms",{programs, session:req.session});
         }catch(error){
             console.log(error);
         }
     }
     async getAddProgramPage(req, res, next){
-        res.render("addProgram.ejs");
+        res.render("addProgram.ejs",{ session:req.session});
 
     }
     async getProgramPage(req, res, next){
@@ -18,7 +18,7 @@ class ProgramController{
         console.log(id)
         try{
             let program = await programService.getProgram(id);
-            res.render("editProgram", {program})
+            res.render("editProgram", {program, session:req.session})
         }catch(error){
             console.log(error);
             res.redirect("/auth/programs");

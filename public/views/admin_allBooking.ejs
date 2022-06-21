@@ -22,6 +22,7 @@
                     <th>booking_date</th>
                     <th>Payment Type</th>
                     <th>Total Price</th>
+                    <th>Options</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +36,7 @@
                     <td><%= new Date(booking.booking_date).toLocaleString().slice(0,10)%></td>
                     <td><%= booking.payment_type%></td>
                     <td><%= booking.totalCost%></td>
+                    <td><a href="/auth/bookings/edit/<%= booking.booking_id%>">Edit Booking</a></td>
                 </tr>
             <% })%>
             </tbody>
