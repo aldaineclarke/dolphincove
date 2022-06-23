@@ -39,8 +39,7 @@ router.post("/programs/edit/:id", isSuperAdmin, programController.updateProgram)
 // Bookings Routes
 router.get("/bookings", authenticated, bookingController.getAdminBookingPage);
 router.get("/bookings/add", authenticated, bookingController.getBookingPage);
-// router.post("/bookings/add",bookingController.AddProgram);
-// router.get("/bookings/delete/:id",bookingController.deleteCompany);
+
 router.get("/bookings/edit/:id", authenticated, bookingController.getEditAdminBookingPage);
 router.post("/bookings/edit/:id", authenticated, bookingController.updateBooking);
 
